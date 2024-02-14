@@ -8,8 +8,11 @@ const App = () => {
     getMovieList().then((result) => setPopularMovies(result));
   }, []);
 
-  const search = (q) => {
-    console.log({ q });
+  const search = async (q) => {
+    if (q.length > 3) {
+      const query = await searchMovie(q);
+      setPopularMovies(query.results);
+    }
   };
 
   console.log(popularMovies);
